@@ -1,0 +1,32 @@
+{
+  "name": "permanent-web-snapshots",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "build-css": "postcss _src/styles.css -o assets/css/styles-compiled.css",
+    "build": "postcss _src/styles.css -o assets/css/styles-compiled.css && bundle exec jekyll build",
+    "prebuild": "bun run fix-singlefile-names",
+    "dev": "wrangler dev",
+    "predeploy": "bun run build",
+    "deploy": "wrangler deploy",
+    "fix-snapshot": "bun _bin/fix-snapshots.ts",
+    "fix-singlefile-names": "bun _bin/fix-single-file-naming.ts snapshots --apply"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "wrangler": "4.34.0",
+    "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.18",
+    "postcss": "^8.4.35",
+    "postcss-cli": "^11.0.0",
+    "postcss-import": "^16.0.1",
+    "sharp": "^0.33.4",
+    "tailwindcss": "^3.4.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
